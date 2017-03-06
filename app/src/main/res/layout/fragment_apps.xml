@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView
+    android:id="@+id/fragment_apps_gridview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="420dp"
+    android:layout_marginLeft="@dimen/content_margin_left"
+    android:layout_marginRight="@dimen/content_margin_right"
+    android:layout_marginTop="@dimen/fragment_margin_top"
+    android:horizontalSpacing="20dp"
+    android:verticalSpacing="20dp"
+    android:listSelector="@drawable/gridview_item_focus"
+    android:nextFocusDown="@id/main_foot_external_storage"
+    android:nextFocusLeft="@id/main_content_tag1"
+    android:nextFocusRight="@id/fragment_apps_gridview"
+    android:nextFocusUp="@id/main_content_tag2"
+   />
+

@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">설정</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">홈</string>
+    <string name="tab2">앱스</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">모두 종료</string>
+    <string name="icon_label_movie">지역 비디오</string>
+    <string name="icon_label_favourites">즐겨찾기</string>
+    <string name="icon_label_music">음악</string>
+    <string name="icon_label_stream">온라인 비디오</string>
+    <string name="icon_label_internet">인터넷</string>
+    <string name="icon_label_game">게임</string>
+    <string name="icon_label_photo">사진</string>
+    <string name="icon_label_social">사교</string>
+    <string name="icon_label_files">파일</string>
+
+    <!--weather -->
+    <string name="weather_no_city">인근 지역 없음</string>
+    <string name="weather_edit_city_dialog_ok">확인</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">공간이 부족하여 바로 가기를 추가할 수 없습니다!</string>
+    <string name="launcher_default_cancel">기본 런처가 취소되었습니다</string>
+    <string name="weather_edit_city_dialog_not_empty">정확히 입력했는지 확인하십시오!</string>
+    <string name="weather_edit_city_dialog_tips">당신이 지금 있는 곳을 영어로 입력하십시오</string>
+    <string name="weather_edit_city_error">인식 불가능한 있는 곳이 입력되어서 다시 시도 하십시오!</string>
+    <string name="noapp">이 애플리케이션이 아직 설치되지 않았습니다</string>
+    <string name="clear_memory_done">애플리케이션은 모두 강제 종료되고 메모리가 삭제되었습니다!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">맑음 ~ 흐림</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">저장소 정리</string>
+    <string name="settings">설정</string>
+    <string name="local_video">지역 비디오</string>
+    <string name="images">사진</string>
+    <string name="music">음악</string>
+    <string name="browser">브라우저</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">온라인 비디오</string>
+    <string name="all_applications">모든 애플리케이션</string>
+    <string name="am">AM</string>
+</resources>

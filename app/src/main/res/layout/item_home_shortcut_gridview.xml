@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shotcut_item"
+    android:layout_width="@dimen/item_apps_layout_width"
+    android:layout_height="@dimen/item_apps_layout_height"
+    android:background="#178FFF"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/shotcut_item_padding">
+
+    <ImageView
+            android:id="@+id/item_category_add_home"
+            android:layout_width="@dimen/shotcut_item_layout_width"
+            android:layout_height="78dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerInside"/>
+
+
+    <ImageView
+        android:id="@+id/item_home_shortcut_gridview_image"
+        android:layout_width="@dimen/shotcut_item_icon_width"
+        android:layout_height="@dimen/shotcut_item_icon_height"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"/>
+    <TextView
+        android:id="@+id/item_home_shortcut_apps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/home_margin_between_text_and_image"
+        android:ellipsize="marquee"
+        android:textColor="@color/white"
+        android:singleLine="true"
+        android:textSize="@dimen/home_text_size_small" />
+
+
+</LinearLayout>

@@ -1,0 +1,343 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.MainActivity">
+
+    <!--header-->
+    <RelativeLayout
+        android:id="@+id/main_header"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <!--logo-->
+        <ImageView
+            android:id="@+id/app_title"
+            android:layout_width="@dimen/logo_width"
+            android:layout_height="@dimen/logo_height"
+            android:layout_marginLeft="@dimen/header_margin_left"
+            android:layout_marginRight="@dimen/header_margin_right"
+            android:layout_marginTop="@dimen/header_margin_top"
+            android:scaleType="fitXY"
+            android:src="@mipmap/logo" />
+
+        <!--weather-->
+        <LinearLayout
+            android:id="@+id/main_header_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_bottom_weather"
+            android:layout_marginEnd="@dimen/margin_between_weather_and_date"
+            android:layout_marginTop="@dimen/header_margin_top"
+            android:layout_toStartOf="@+id/main_header_date"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignBottom="@id/main_header_date"
+            android:nextFocusLeft="@+id/main_header_weather"
+            android:nextFocusRight="@+id/main_header_weather"
+            android:paddingLeft="@dimen/weather_padding_left_and_right"
+            android:paddingRight="@dimen/weather_padding_left_and_right">
+
+            <TextView
+                android:id="@+id/title_weather_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/weather_no_city"
+                android:textColor="@color/white"
+                android:textSize="@dimen/weather_text_size" />
+
+            <TextView
+                android:id="@+id/title_weather_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/weather_text_size"
+                android:visibility="gone"
+                android:layout_marginLeft="5dp"
+                />
+
+
+
+            <ImageView
+                android:id="@+id/title_weather_image"
+                android:layout_width="@dimen/weather_image_width"
+                android:layout_height="@dimen/weather_image_height"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/weather3200" />
+
+        </LinearLayout>
+
+        <!--Date-->
+        <TextView
+            android:id="@+id/main_header_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/app_title"
+            android:layout_marginEnd="@dimen/header_margin_right"
+            android:text="11:11"
+            android:textColor="@color/white"
+            android:textSize="@dimen/date_text_size" />
+
+    </RelativeLayout>
+
+    <!--content-->
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/main_content_tab"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/main_content_tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/content_margin_left"
+                android:layout_marginTop="@dimen/tab_margin_top"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusLeft="@id/main_content_tag1"
+                android:paddingBottom="@dimen/tabs_padding_top_and_bottom"
+                android:paddingLeft="@dimen/weather_padding_left_and_right"
+                android:paddingRight="@dimen/weather_padding_left_and_right"
+                android:paddingTop="@dimen/tabs_padding_top_and_bottom"
+                android:text="@string/tab1"
+                android:textColor="@color/white"
+                android:background="@drawable/tab_focus"
+                android:textSize="@dimen/tab_text_size" />
+
+            <TextView
+                android:id="@+id/main_content_tag2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_between_tabs"
+                android:layout_marginTop="@dimen/tab_margin_top"
+                android:layout_toEndOf="@id/main_content_tag1"
+                android:focusable="true"
+                android:clickable="true"
+                android:nextFocusRight="@id/main_content_tag2"
+                android:paddingBottom="@dimen/tabs_padding_top_and_bottom"
+                android:paddingLeft="@dimen/weather_padding_left_and_right"
+                android:paddingRight="@dimen/weather_padding_left_and_right"
+                android:paddingTop="@dimen/tabs_padding_top_and_bottom"
+                android:text="@string/tab2"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:background="@drawable/tab_focus"
+                android:textSize="@dimen/tab_text_size" />
+            <ImageView
+                android:id="@+id/main_content_tag_category_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="@dimen/footer_margin_right"
+                android:focusable="false"
+                android:clickable="false"
+                android:paddingBottom="@dimen/tabs_padding_top_and_bottom"
+                android:paddingRight="@dimen/weather_padding_left_and_right"
+                android:paddingTop="@dimen/tabs_padding_top_and_bottom"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:id="@+id/main_content_tag_category"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="45dp"
+                android:focusable="false"
+                android:clickable="false"
+                android:paddingBottom="@dimen/tabs_padding_top_and_bottom"
+                android:paddingLeft="@dimen/weather_padding_left_and_right"
+                android:paddingRight="@dimen/weather_padding_left_and_right"
+                android:paddingTop="@dimen/tabs_padding_top_and_bottom"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:textSize="@dimen/category_tab_text_size" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/main_content_tag3"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/margin_between_tabs"-->
+                <!--android:layout_marginTop="@dimen/tab_margin_top"-->
+                <!--android:layout_toEndOf="@id/main_content_tag2"-->
+                <!--android:clickable="true"-->
+                <!--android:focusable="true"-->
+                <!--android:nextFocusDown="@id/main_content_tag3"-->
+                <!--android:nextFocusRight="@id/main_content_tag3"-->
+                <!--android:paddingBottom="@dimen/tabs_padding_top_and_bottom"-->
+                <!--android:paddingLeft="@dimen/weather_padding_left_and_right"-->
+                <!--android:paddingRight="@dimen/weather_padding_left_and_right"-->
+                <!--android:paddingTop="@dimen/tabs_padding_top_and_bottom"-->
+                <!--android:text="@string/tab3"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="@dimen/tab_text_size" />-->
+
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/main_content_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/main_footer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/footer_margin_left"
+        android:layout_marginRight="@dimen/footer_margin_right">
+
+        <ImageView
+            android:id="@+id/main_foot_ethernet"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_marginLeft="@dimen/footer_margin_left"
+            android:src="@mipmap/ethernet_off"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_alignParentRight="true"
+            />
+
+
+        <ImageView
+            android:id="@+id/main_foot_external_storage"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@mipmap/usb_off"
+            android:layout_marginLeft="@dimen/margin_between_footer_image"
+            android:layout_toLeftOf="@id/main_foot_ethernet"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:nextFocusRight="@+id/main_foot_shutdown"
+           />
+
+
+
+        <ImageView
+            android:id="@+id/main_foot_bluetooth_states"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:layout_marginLeft="@dimen/margin_between_footer_image"
+            android:src="@mipmap/bt_off"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="false"
+            android:clickable="true"
+            android:contextClickable="false"
+            android:cropToPadding="false"
+            android:focusable="true"
+            android:nestedScrollingEnabled="false"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:nextFocusRight="@+id/main_foot_external_storage"
+            android:nextFocusLeft="@+id/main_foot_wifi_states"
+            android:layout_toLeftOf="@id/main_foot_external_storage"
+            android:layout_marginStart="105dp"/>
+
+        <ImageView
+            android:id="@+id/main_foot_wifi_states"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:layout_marginLeft="@dimen/margin_between_footer_image"
+            android:src="@mipmap/icon_wifi_0"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:nextFocusRight="@+id/main_foot_bluetooth_states"
+            android:layout_toLeftOf="@+id/main_foot_bluetooth_states"
+            />
+
+        <ImageView
+            android:id="@+id/main_foot_shutdown"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:src="@mipmap/icon_shutdown"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_marginLeft="28dp"
+
+            android:nextFocusRight="@+id/main_foot_volume"
+            android:nextFocusLeft="@+id/main_foot_external_storage"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <ImageView
+            android:id="@+id/main_foot_volume"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:src="@mipmap/icon_volume"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_toRightOf="@+id/main_foot_volume_reduce"
+            android:layout_marginLeft="@dimen/margin_between_footer_image"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <ImageView
+            android:id="@+id/main_foot_volume_reduce"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:src="@mipmap/volume_reduce"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_toRightOf="@+id/main_foot_shutdown"
+            android:layout_marginLeft="@dimen/margin_between_footer_image"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            />
+
+        <ImageView
+            android:id="@+id/main_foot_setting"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/main_foot_launcher_switcher"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_marginRight="@dimen/margin_between_footer_image"
+            android:nextFocusUp="@+id/fragment_home_gridview"
+            android:nextFocusLeft="@+id/main_foot_external_storage"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:src="@mipmap/settings_off" />
+
+        <ImageView
+            android:id="@+id/main_foot_launcher_switcher"
+            android:layout_width="@dimen/footer_image_side"
+            android:layout_height="@dimen/footer_image_side"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/footer_margin_bottom"
+            android:layout_marginRight="@dimen/margin_between_footer_image"
+            android:nextFocusUp="@+id/fragment_home_gridview"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone"
+            android:src="@mipmap/switch_off" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

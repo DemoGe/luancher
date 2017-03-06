@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">הגדרות</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">בית</string>
+    <string name="tab2">יישומים</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">קודי</string>
+    <string name="icon_label_google_play">חנות גוגל</string>
+    <string name="icon_label_task_killer">נקה משימות</string>
+    <string name="icon_label_movie">וידאו מקומי</string>
+    <string name="icon_label_favourites">מועדפים</string>
+    <string name="icon_label_music">מוזיקה</string>
+    <string name="icon_label_stream">וידאו באינטרנט</string>
+    <string name="icon_label_internet">אינטרנט</string>
+    <string name="icon_label_game">משחקים</string>
+    <string name="icon_label_photo">תמונות</string>
+    <string name="icon_label_social">חברתי</string>
+    <string name="icon_label_files">קבצים</string>
+
+    <!--weather -->
+    <string name="weather_no_city">אין עיר</string>
+    <string name="weather_edit_city_dialog_ok">אישור</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">קיצורי דרך מחוץ לטווח!</string>
+    <string name="launcher_default_cancel">ממשק ברירת מחדל בוטל</string>
+    <string name="weather_edit_city_dialog_not_empty">וודא שהכנסת נכון!</string>
+    <string name="weather_edit_city_dialog_tips">הכנס שם עיר</string>
+    <string name="weather_edit_city_error">עיר לא נמצאה, נא לנסות שנית!</string>
+    <string name="noapp"> יישום זה עוד לא הותקן </string>
+    <string name="clear_memory_done">כל היישומים נסגרו והזכרון פנוי!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">סאני מעונן</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">ניקוי חפצים</string>
+    <string name="settings">הגדרות</string>
+    <string name="local_video">וידאו מקומי</string>
+    <string name="images">תמונות</string>
+    <string name="music">מוּסִיקָה</string>
+    <string name="browser">דפדפן</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">וידאו באינטרנט</string>
+    <string name="all_applications">כל היישומים</string>
+    <string name="am">AM</string>
+
+</resources>

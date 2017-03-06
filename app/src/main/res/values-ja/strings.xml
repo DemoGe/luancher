@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+
+    <string name="action_settings">設定</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">ホーム</string>
+    <string name="tab2">すべてのアプリ</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">タスクキラー</string>
+    <string name="icon_label_movie">ローカルビデオ</string>
+    <string name="icon_label_favourites">お気に入り</string>
+    <string name="icon_label_music">音楽</string>
+    <string name="icon_label_stream">オンラインビデオ</string>
+    <string name="icon_label_internet">インターネット</string>
+    <string name="icon_label_game">ゲーム</string>
+    <string name="icon_label_photo">写真</string>
+    <string name="icon_label_social">ソーシャル</string>
+    <string name="icon_label_files">ファイル</string>
+
+    <!--weather -->
+    <string name="weather_no_city">No City</string>
+    <string name="weather_edit_city_dialog_ok">確定</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">ショットカットをこれ以上設置することができません!</string>
+    <string name="launcher_default_cancel">デフォルトのランチャーは取り消されました</string>
+    <string name="weather_edit_city_dialog_not_empty">入力したことを確認してください!</string>
+    <string name="weather_edit_city_dialog_tips">あなたがいる市を入力してください</string>
+    <string name="weather_edit_city_error">入力した市は無効です、再入力してください!</string>
+    <string name="noapp">該当アプリはインストールされておりません</string>
+    <string name="clear_memory_done">すべてのアプリは終了され、メモリがクリアされました!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">曇りから曇り</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">ストレージのクリーンアップ</string>
+    <string name="settings">設定</string>
+    <string name="local_video">ローカルビデオ</string>
+    <string name="images">写真</string>
+    <string name="music">音楽</string>
+    <string name="browser">ブラウザ</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">オンラインビデオ</string>
+    <string name="all_applications">すべてのアプリケーション</string>
+    <string name="am">AM</string>
+</resources>

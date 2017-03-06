@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">Cài đặt</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">Trang chủ</string>
+    <string name="tab2">Tất cả ứng dụng</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">Tắt ứng dụng chạy ngầm</string>
+    <string name="icon_label_movie">Video địa phương</string>
+    <string name="icon_label_favourites">Ưa thích</string>
+    <string name="icon_label_music">Âm nhạc</string>
+    <string name="icon_label_stream">Video trực tuyến</string>
+    <string name="icon_label_internet">Mạng Internet</string>
+    <string name="icon_label_game">Trò chơi</string>
+    <string name="icon_label_photo">Hình ảnh</string>
+    <string name="icon_label_social">Mạng xã hội</string>
+    <string name="icon_label_files">Tập tin</string>
+
+    <!--weather -->
+    <string name="weather_no_city">No city</string>
+    <string name="weather_edit_city_dialog_ok">OK</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">Quá giới hạn, không thể thêm shortcut!</string>
+    <string name="launcher_default_cancel">Giao diện mặc định đã bị hủy bỏ</string>
+    <string name="weather_edit_city_dialog_not_empty">Hãy chắc chắn bạn nhập đúng!</string>
+    <string name="weather_edit_city_dialog_tips">Nhập tên thành phố của bạn</string>
+    <string name="weather_edit_city_error">Không thể tìm thấy thành phố này, vui lòng nhập lại!</string>
+    <string name="noapp">ứng dụng này chưa được cài đặt!</string>
+    <string name="clear_memory_done">Tất cả ứng dụng đã được xóa và bộ nhớ đã được giải phóng!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">Nắng để đục</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">Cleanup lưu trữ</string>
+    <string name="settings">Cài đặt</string>
+    <string name="local_video">Video địa phương</string>
+    <string name="images">Hình ảnh</string>
+    <string name="music">Âm nhạc</string>
+    <string name="browser">Trình duyệt</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">Video trực tuyến</string>
+    <string name="all_applications">Tất cả các ứng dụng</string>
+    <string name="am">AM</string>
+</resources>

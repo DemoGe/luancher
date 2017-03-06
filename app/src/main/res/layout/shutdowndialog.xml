@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+   android:layout_height="match_parent"  
+    android:orientation="horizontal"
+	  android:gravity="center_vertical|center_horizontal"
+	  android:focusable="true"
+     android:background="#D2000000" 	>   
+<LinearLayout
+       android:id="@+id/layoutshutdowncorn"
+       android:layout_alignParentLeft="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       
+	   android:gravity="center"
+       >
+    <ImageView
+        android:id="@+id/shutdowncorn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:clickable="true"
+		android:focusable="true"
+		
+        />
+</LinearLayout>
+<LinearLayout
+       android:id="@+id/suspendlayout"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_marginLeft="160dp"
+       android:layout_alignParentRight="true"
+	   android:gravity="center"
+      
+      
+       >
+
+    <ImageView
+        android:id="@+id/suspendcorn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:focusable="true"
+		android:clickable="true"
+      />
+
+</LinearLayout>
+</LinearLayout>

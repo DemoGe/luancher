@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.netxeon.beeui"
+    android:sharedUserId="android.uid.system">
+
+    <!-- Push service 运行需要的权限 -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <!-- android:theme="@style/AppTheme"-->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/bee_ui"
+        android:label="@string/app_name"
+        android:persistent="true"
+        android:theme="@style/changebgTheme">
+
+        <activity
+            android:name="com.netxeon.beeui.activity.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <!-- 取消掉图标 as运行时需要指定app main-->
+               <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.netxeon.beeui.activity.SystemVoiceActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.netxeon.beeui.activity.AppActicity"
+            android:theme="@style/dialogActivity" />
+        <activity
+            android:name="com.netxeon.beeui.activity.CategoryActivity"
+            android:theme="@style/dialogActivity" />
+        <activity
+            android:name="com.netxeon.beeui.activity.EditorActivity"
+            android:theme="@style/dialogActivity" />
+
+        <activity
+            android:name="com.netxeon.beeui.activity.CleanActivity"
+            android:theme="@style/CleanforTransparent" />
+
+        <meta-data
+            android:name="db_version"
+            android:value="2" />
+        <activity android:name="com.netxeon.beeui.activity.ShutdownActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+<!--
+        <receiver android:name="com.netxeon.beeui.broadcast.KeyReceiver" >
+            <intent-filter>
+                <action android:name="com.netxeon.lignthome.poweroff" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.netxeon.beeui.broadcast.SystemVoiceReceicer" >
+            <intent-filter>
+                <action android:name="com.netxeon.newprobox2.systemvoice" />
+            </intent-filter>
+        </receiver> -->
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>

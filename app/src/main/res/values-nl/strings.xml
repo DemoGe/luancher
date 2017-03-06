@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">Instellingen</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">Home</string>
+    <string name="tab2">Apps</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">Task Killer</string>
+    <string name="icon_label_movie">Lokale video</string>
+    <string name="icon_label_favourites">Favorieten</string>
+    <string name="icon_label_music">Muziek</string>
+    <string name="icon_label_stream">Online video</string>
+    <string name="icon_label_internet">Internet</string>
+    <string name="icon_label_game">Games</string>
+    <string name="icon_label_photo">Afbeeldingen</string>
+    <string name="icon_label_social">Social</string>
+    <string name="icon_label_files">Bestanden</string>
+
+    <!--weather -->
+    <string name="weather_no_city">Geen stad</string>
+    <string name="weather_edit_city_dialog_ok">OK</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">Shortcuts niet toegankelijk!</string>
+    <string name="launcher_default_cancel">Default launcher is gecancelled</string>
+    <string name="weather_edit_city_dialog_not_empty">Zorg dat je invoer correct is!</string>
+    <string name="weather_edit_city_dialog_tips">Voer naam van je stad in</string>
+    <string name="weather_edit_city_error">Kan je stad niet vinden, probeer het nog een keer!</string>
+    <string name="noapp"> Deze app is nog niet geïnstalleerd </string>
+    <string name="clear_memory_done">Alle apps zijn gesloten en geheugen is leeg!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">Zonnige tot bewolkt</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">Opslag Cleanup</string>
+    <string name="settings">Instellingen</string>
+    <string name="local_video">Lokale video</string>
+    <string name="images">Afbeeldingen</string>
+    <string name="music">Muziek</string>
+    <string name="browser">Browser</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">Online video</string>
+    <string name="all_applications">Alle aanvragen</string>
+    <string name="am">AM</string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--目录里面的快捷方式-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/item_apps_layout_width"
+    android:layout_height="@dimen/item_apps_layout_height"
+    android:background="#178FFF"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/item_category_add"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"/>
+
+    <ImageView
+        android:id="@+id/apps_icon_selected"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/item_select_img"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_apps_gridview_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginTop="1dp"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/item_apps_gridview_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="1dp"
+
+            android:textColor="@color/white"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textSize="@dimen/home_text_size_small" />
+
+    </LinearLayout>
+</RelativeLayout>

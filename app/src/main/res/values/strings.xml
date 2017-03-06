@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">Settings</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">Home</string>
+    <string name="tab2">Apps</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">Task Killer</string>
+    <string name="icon_label_movie">Local video</string>
+    <string name="icon_label_favourites">Favourites</string>
+    <string name="icon_label_music">Music</string>
+    <string name="icon_label_stream">Online video</string>
+    <string name="icon_label_internet">Internet</string>
+    <string name="icon_label_game">Game</string>
+    <string name="icon_label_photo">Images</string>
+    <string name="icon_label_social">Social</string>
+    <string name="icon_label_files">Files</string>
+
+    <!--weather -->
+    <string name="weather_no_city">No City</string>
+    <string name="weather_edit_city_dialog_ok">OK</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">Shortcuts out of range!</string>
+    <string name="launcher_default_cancel">Default launcher have been canceled</string>
+    <string name="weather_edit_city_dialog_not_empty">Make sure your input is correct!</string>
+    <string name="weather_edit_city_dialog_tips">Input your city name</string>
+    <string name="weather_edit_city_error">The city you entered cannot be found, please try again!</string>
+    <string name="noapp">This app has not been installed yet!</string>
+    <string name="clear_memory_done">All Apps have been killed and memory is cleared!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="all_apps_intent">com.netxeon.probox2.showapp</string>
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="wifi_pkg">com.android.settings</string>
+    <string name="wifi_main_activity">com.android.settings.wifi.WifiSettings</string>
+
+    <string name="bt_pkg">com.android.settings</string>
+    <string name="bt_main_activity">com.android.settings.bluetooth.BluetoothSettings</string>
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="browser_internet">com.android.browser</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+     <string name="google_internet">com.android.chrome</string>
+    <string name="long_click_dialog_title">Please choice !</string>
+    <string name="sunny_to_cloudy">Sunny to cloudy</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">Storage Cleanup</string>
+    <string name="settings">Settings</string>
+    <string name="local_video">Local video</string>
+    <string name="images">Images</string>
+    <string name="music">Music</string>
+    <string name="browser">Browser</string>
+    <string name="apps">APPS</string>
+    <string name="online_video">Online video</string>
+    <string name="all_applications">All applications</string>
+    <string name="am">AM</string>
+</resources>

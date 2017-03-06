@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">Настройки</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">Главная</string>
+    <string name="tab2">Все приложения</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">Очистка задач</string>
+    <string name="icon_label_movie">Местное видео</string>
+    <string name="icon_label_favourites">Избранное</string>
+    <string name="icon_label_music">Музыка</string>
+    <string name="icon_label_stream">Интернет-видео</string>
+    <string name="icon_label_internet">Интернет</string>
+    <string name="icon_label_game">Игры</string>
+    <string name="icon_label_photo">Изображений</string>
+    <string name="icon_label_social">Социальные сети</string>
+    <string name="icon_label_files">Файлы</string>
+
+    <!--weather -->
+    <string name="weather_no_city">Города нет</string>
+    <string name="weather_edit_city_dialog_ok">Да</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">Ярлыки вне диапазона!</string>
+    <string name="launcher_default_cancel">Установка лаунчера по умолчанию была отменена!</string>
+    <string name="weather_edit_city_dialog_not_empty">Убедитесь, что ваши данные для входа указаны верно!</string>
+    <string name="weather_edit_city_dialog_tips">Введите название вашего города</string>
+    <string name="weather_edit_city_error">Не можете найти город, пожалуйста, попробуйте еще раз!</string>
+    <string name="noapp">Это приложение еще не установлено!</string>
+    <string name="clear_memory_done">Все приложения были удалены, память очищена!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.fb.FileBrower</string>
+
+    <string name="sunny_to_cloudy">Солнечный в облачное</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">Очистка хранения</string>
+    <string name="settings">Hастройки</string>
+    <string name="local_video">Местное видео</string>
+    <string name="images">Изображений</string>
+    <string name="music">Музыка</string>
+    <string name="browser">браузер</string>
+    <string name="apps">ПРОГРАММЫ</string>
+    <string name="online_video">Интернет-видео</string>
+    <string name="all_applications">Все приложения</string>
+    <string name="am">AM</string>
+</resources>

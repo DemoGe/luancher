@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">設定</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">主頁</string>
+    <string name="tab2">所有程式</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">關閉所有程式</string>
+    <string name="icon_label_movie">本地視頻</string>
+    <string name="icon_label_favourites">最愛</string>
+    <string name="icon_label_music">音樂</string>
+    <string name="icon_label_stream">線上視頻</string>
+    <string name="icon_label_internet">互聯網</string>
+    <string name="icon_label_game">遊戲</string>
+    <string name="icon_label_photo">影像</string>
+    <string name="icon_label_social">社交</string>
+    <string name="icon_label_files">檔案總管</string>
+
+    <!--weather -->
+    <string name="weather_no_city">地區</string>
+    <string name="weather_edit_city_dialog_ok">確定</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">捷徑位置已滿, 不能再加入!</string>
+    <string name="launcher_default_cancel">預設的啟動器已被取消</string>
+    <string name="weather_edit_city_dialog_not_empty">請確保你的輸入是正確!</string>
+    <string name="weather_edit_city_dialog_tips">輸入你的地區/城市</string>
+    <string name="weather_edit_city_error">輸入的地區/城市無效, 請重新輸入!</string>
+    <string name="noapp">此程式並未安裝!</string>
+    <string name="clear_memory_done">所有應用程式已被關閉及清空了記憶體!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="wifi_pkg">com.android.settings</string>
+    <string name="wifi_main_activity">com.android.settings.wifi.WifiSettings</string>
+
+    <string name="bt_pkg">com.android.settings</string>
+    <string name="bt_main_activity">com.android.settings.bluetooth.BluetoothSettings</string>
+    <string name="google_internet">com.android.chrome</string>
+    <string name="long_click_dialog_title">Please choice !</string>
+    <string name="sunny_to_cloudy">晴到多雲</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">關閉所有程式</string>
+    <string name="settings">設定</string>
+    <string name="local_video">本地視頻</string>
+    <string name="images">影像</string>
+    <string name="music">音樂</string>
+    <string name="browser">瀏覽器</string>
+    <string name="apps">應用程序</string>
+    <string name="online_video">線上視頻</string>
+    <string name="all_applications">全部應用</string>
+</resources>

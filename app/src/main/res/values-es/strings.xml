@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">Ajustes</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1">Inicio</string>
+    <string name="tab2">Todas apps</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">Matador tareas</string>
+    <string name="icon_label_movie">Video local</string>
+    <string name="icon_label_favourites">Favoritos</string>
+    <string name="icon_label_music">Música</string>
+    <string name="icon_label_stream">Video en línea</string>
+    <string name="icon_label_internet">Internet</string>
+    <string name="icon_label_game">Juegos</string>
+    <string name="icon_label_photo">Imágenes</string>
+    <string name="icon_label_social">Social</string>
+    <string name="icon_label_files">Ficheros</string>
+
+    <!--weather -->
+    <string name="weather_no_city">Sin ciudad</string>
+    <string name="weather_edit_city_dialog_ok">OK</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">Problemas accesos directos!</string>
+    <string name="launcher_default_cancel">Lanzador por defecto cancelado</string>
+    <string name="weather_edit_city_dialog_not_empty">Comprueba que la entrada es correcta!</string>
+    <string name="weather_edit_city_dialog_tips">Nombre de tu ciudad</string>
+    <string name="weather_edit_city_error">Ciudad no encontrada, ¡prueba con otra!</string>
+    <string name="noapp">Aplicación no instalada</string>
+    <string name="clear_memory_done">Detenidas todas las apps y memoria limpia!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+    <string name="sunny_to_cloudy">Soleado a nublado</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">Storage Cleanup</string>
+    <string name="settings">Ajustes</string>
+    <string name="local_video">Video local</string>
+    <string name="images">Imágenes</string>
+    <string name="music">Música</string>
+    <string name="browser">Navegador</string>
+    <string name="apps">APLICACIONES</string>
+    <string name="online_video">Video en línea</string>
+    <string name="all_applications">Todas las aplicaciones</string>
+    <string name="am">A.M</string>
+</resources>

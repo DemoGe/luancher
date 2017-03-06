@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Bee UI</string>
+    
+    <string name="action_settings">ตั้งค่า</string>
+
+    <!--    for Home Tab    -->
+    <string name="tab1"> หน้าแรก</string>
+    <string name="tab2">แอพพลิเคชั่น</string>
+
+    <!--    for Home Icon   -->
+    <string name="icon_label_kodi">KODI</string>
+    <string name="icon_label_google_play">Google Play</string>
+    <string name="icon_label_task_killer">ลบงานที่ค้าง</string>
+    <string name="icon_label_movie">วิดีโอท้องถิ่น</string>
+    <string name="icon_label_favourites">ชื่นชอบ</string>
+    <string name="icon_label_music"> เพลง</string>
+    <string name="icon_label_stream">วิดีโอออนไลน์</string>
+    <string name="icon_label_internet">อินเตอร์เน็ต</string>
+    <string name="icon_label_game">เกมส์</string>
+    <string name="icon_label_photo">ภาพ</string>
+    <string name="icon_label_social">โซเชียล</string>
+    <string name="icon_label_files"> ไฟล์</string>
+
+    <!--weather -->
+    <string name="weather_no_city"> ไม่มีเมืองนี้</string>
+    <string name="weather_edit_city_dialog_ok">เรียบร้อย</string>
+
+    <!--Toast-->
+    <string name="shortcut_out_of_range">ไม่มีทางลัดนี้!</string>
+    <string name="launcher_default_cancel">ค่าเริ่มต้นปกติถูกยกเลิก </string>
+    <string name="weather_edit_city_dialog_not_empty">โปรดใส่ข้อมูลให้ถูกต้อง!</string>
+    <string name="weather_edit_city_dialog_tips">กรุณาใส่ชื่อเมือง</string>
+    <string name="weather_edit_city_error">ไม่สามารถหาชื่อเมืองนี้ได้ กรุณาลองใหม่!</string>
+    <string name="noapp">แอพพลิเคชั่นนี้ติดตังไม่ได้!</string>
+    <string name="clear_memory_done">ทุกแอพพลิเคชั่นถูกลบจากหน่วยความจำเรียบร้อย!</string>
+
+    <!-- package & activity names -->
+    <!--WARRING!!! DON NOT TRANSLATE THEM !!!-->
+    <string name="setting_pkg">com.android.tv.settings</string>
+    <string name="setting_main_activity">com.android.tv.settings.MainSettings</string>
+    <string name="setting_unmount_sd_activity">"com.android.tv.settings.device.storage.UnmountActivity"</string>
+    <string name="unmount_sd_volume_id">android.os.storage.extra.VOLUME_ID</string>
+    <string name="unmount_sd_volume_desc">UnmountActivity.volumeDesc</string>
+
+    <string name="kodi_media">org.xbmc.kodi</string>
+    <string name="google_play">com.android.vending</string>
+    <string name="file_brower">com.droidlogic.FileBrower</string>
+
+    <string name="sunny_to_cloudy">ซันนี่จะเมฆมาก</string>
+    <string name="_28">28%</string>
+    <string name="storage_cleanup">การล้างข้อมูลการจัดเก็บข้อมูล</string>
+    <string name="settings">การตั้งค่า</string>
+    <string name="local_video">วิดีโอท้องถิ่น</string>
+    <string name="images">ภาพ</string>
+    <string name="music">เพลง</string>
+    <string name="browser">เบราว์เซอร์</string>
+    <string name="apps">แอพพลิเคชัน</string>
+    <string name="online_video">วิดีโอออนไลน์</string>
+    <string name="all_applications">การใช้งานทั้งหมด</string>
+    <string name="am">AM</string>
+</resources>
