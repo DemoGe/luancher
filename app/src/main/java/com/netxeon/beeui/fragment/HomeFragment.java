@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,9 +107,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mShortcut = new ArrayList<>();
-
+        aaa = Util.getString(getActivity(), WeatherUtils.WEATHER_CITY);
     }
-   String aaa="";
+   private  static  String aaa;
     public void initWeather() {
         ConnectivityManager connManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connManager.getActiveNetworkInfo() != null){
@@ -161,7 +160,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         super.onViewCreated(view, savedInstanceState);
         viewInit(view);
         setListener();
-        aaa = Util.getString(getActivity(), WeatherUtils.WEATHER_CITY);
+
     }
 
 
@@ -722,7 +721,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             switch (msg.what) {
                 case WeatherUtils.MSG_WEATHER_NO_CITY: {
                     if (weather_city1 != null) weather_city1.setText(R.string.weather_no_city);
-                    //  Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, "empty");
+                     Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, "empty");
                     break;
                 }
                 case WeatherUtils.MSG_WEATHER_OK: {
@@ -739,7 +738,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                         } else {
                             weather_image1.setImageResource(R.mipmap.weather3200);
                         }
-                        // Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
+                         Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
 //                        L.i("MainActivity.UpdateWeatherHandler display weather info !");
                         GET_WEATHER_OK = true;
 
@@ -749,6 +748,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                             //   weathrer_temperature1.setText("28");
                             //  weather_info1.setText("走到这里");
                             initWeather();
+
                         }
                         //    Toast.makeText(getActivity(), R.string.weather_edit_city_error, Toast.LENGTH_LONG).show();
 //                        L.i("MainActivity.UpdateWeatherHandler weather views are null !");
@@ -767,7 +767,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         new AlertDialog.Builder(getActivity()).setTitle(R.string.weather_edit_city_dialog_tips).setIcon(android.R.drawable.ic_dialog_info).setView(editor).setPositiveButton(R.string.weather_edit_city_dialog_ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String _location = editor.getText().toString();
+             String  _location = editor.getText().toString();
                 if (!TextUtils.isEmpty(_location)) {
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(editor.getWindowToken(), 0);
