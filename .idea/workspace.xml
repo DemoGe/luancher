@@ -10,12 +10,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fb24019-db05-4b1c-a279-c21f4c0f46bf" name="Default" comment="update weather to save when reboot">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_8_4_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" />
+    <list default="true" id="4fb24019-db05-4b1c-a279-c21f4c0f46bf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/netxeon/beeui/fragment/HomeFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/netxeon/beeui/fragment/HomeFragment.java" />
     </list>
     <ignored path="NewProbox2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,6 +98,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="771952870@qq.com" />
+        <option value="dicky" />
         <option value="hz" />
       </list>
     </option>
@@ -2253,6 +2251,14 @@
       <option name="presentableId" value="Default" />
       <updated>1488768579864</updated>
     </task>
+    <task id="LOCAL-00001" summary="update weather to save when reboot">
+      <created>1488780840025</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1488780840025</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
