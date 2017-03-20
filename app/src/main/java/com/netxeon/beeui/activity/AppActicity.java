@@ -31,7 +31,6 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/12/31.
  */
-
 public class AppActicity extends Activity implements AdapterView.OnItemLongClickListener {
     private MyGridView gv_shortcut_main;
     private AppActivityAdapter scAdapter;

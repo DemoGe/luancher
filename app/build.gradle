@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-
+def AAVersion = '3.3.2'
 android {
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
@@ -42,11 +42,29 @@ android {
         }
     }
 }
-def AASnapshotVersion = '4.0-SNAPSHOT'
+
 dependencies {
 /*    compile fileTree(include: ['*.jar'], dir: 'libs')*/
     compile 'com.android.support:appcompat-v7:23.0.+'
     compile files('libs/library_project.jar')
     provided files('libs/framework.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+
+}
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0]?.processResources?.manifestFile
+        // if you have multiple outputs (when using splits), you may want to have other index than 0
+
+
+        // you should set your package name here if you are using different application IDs
+        // resourcePackageName "your.package.name"
+
+
+        // You can set optional annotation processing options here, like these commented options:
+        // logLevel 'INFO'
+        // logFile '/var/log/aa.log'
+    }
 }
