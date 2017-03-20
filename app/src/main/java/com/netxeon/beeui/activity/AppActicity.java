@@ -103,8 +103,17 @@ public class AppActicity extends Activity implements AdapterView.OnItemLongClick
                 if (gv_shortcut_main != null && view != null) {
                     gv_shortcut_main.setTopView(view);
                 }
-                Intent intent = shortCutApps.get(position).getIntent();
-                startActivity(intent);
+                try {
+                    Intent mainintent = new Intent(Intent.ACTION_MAIN, null);
+                    mainintent.addCategory(Intent.CATEGORY_LAUNCHER);
+                    mainintent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                    mainintent.setComponent(shortCutApps.get(position).getIntent().getComponent());
+                    startActivity(mainintent);
+//                    Intent intent = shortCutApps.get(position).getIntent();
+//                    startActivity(intent);
+                }catch (Exception e){
+                    Log.e("tag",e+"");
+                }
 
             }
         });
