@@ -24,6 +24,7 @@ import android.os.PowerManager;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.text.TextUtils;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -80,16 +81,15 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     private NetworkChangedReceiver mNetworkChangedReceiver;
     private UsbChangeReceiver mUsbChangeReceiver;
     private BluetoothChangeReceiver mBluetoothChangeReceiver;
-
     private Fragment mCurrentFragment, mLastFragment = null;
     public Context mContext;
-
+    private  HomeReceiver homeReceiver;
     private TextView lastTag;
     private Map<String, String> volumes;
     private KeyReceiver keyReceiver;
     private boolean isForeground = false;
     private AudioManager audiomanage;
-
+    private   boolean isHomeKey=false;
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -106,12 +106,12 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             new Thread() {
                 public void run() {
                     Util.copyDatabaseFromAssert(MainActivity.this, newDatabaseVersion);//顺便把数据库版本set进去
-                    Util.copyWallpaperFromAssert(MainActivity.this);
+              //      Util.copyWallpaperFromAssert(MainActivity.this);
                 }
             }.start();
         }
         mContext = this;
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER);//壁纸
+      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER);//壁纸
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         setContentView(R.layout.activity_main);
         initView();
@@ -130,6 +130,9 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         keyFilter.addAction(getResources().getString(R.string.all_apps_intent));
         keyReceiver = new KeyReceiver();
         registerReceiver(keyReceiver, keyFilter);
+        IntentFilter homeIntent =new IntentFilter(Intent. ACTION_CLOSE_SYSTEM_DIALOGS);
+         homeReceiver=new HomeReceiver();
+        registerReceiver(homeReceiver,homeIntent);
     }
 
     //判断是否有蓝牙 如果是属性8189bs 则没有蓝牙
@@ -143,6 +146,11 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 //        lastTag.requestFocus();
         isForeground = true;
         registerReceiver(mNetworkChangedReceiver, mFilter);
+       if(isHomeKey){
+           changeFragment(homeFragment);
+           isHomeKey=false;
+       }
+
     }
 
     @Override
@@ -748,6 +756,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         unregisterReceiver(keyReceiver);
         unregisterReceiver(mUsbChangeReceiver);
         unregisterReceiver(mBluetoothChangeReceiver);
+        unregisterReceiver(homeReceiver);
         super.onDestroy();
     }
 
@@ -821,5 +830,11 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             }
         }
     }
+    public class HomeReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+          isHomeKey=true;
+        }
 
+    }
 }
