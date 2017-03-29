@@ -9,14 +9,15 @@
         <item name="android:windowActionModeOverlay">true</item>
     </style>
 
-    <style name="dialogActivity">
+    <style name="dialogActivity" >
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:background">@color/none</item>
+        <!--弹出对话框黑色对话框设置为半透明，Rk上加了会闪去掉
         <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:backgroundDimAmount">0.5</item>-->
     </style>
 
     <style name="CleanforTransparent" parent="@style/dialogActivity">

@@ -51,12 +51,14 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.netxeon.beeui.activity.AppActicity"
+            android:launchMode="singleTask"
             android:theme="@style/dialogActivity" />
         <activity
             android:name="com.netxeon.beeui.activity.CategoryActivity"
             android:theme="@style/dialogActivity" />
         <activity
             android:name="com.netxeon.beeui.activity.EditorActivity"
+            android:launchMode="singleInstance"
             android:theme="@style/dialogActivity" />
 
         <activity
