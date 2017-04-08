@@ -56,6 +56,8 @@ import java.util.Map;
 
 import zh.wang.android.apis.yweathergetter4a.WeatherInfo;
 
+import static android.security.KeyStore.getApplicationContext;
+
 public class MainActivity extends Activity implements View.OnClickListener, View.OnFocusChangeListener
         , View.OnLongClickListener {
 
@@ -638,7 +640,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     private Handler timeHandle = new Handler();
     private Runnable timeRun = new Runnable() {
         public void run() {
-            systemDate.setText(DateUtil.getTime());
+            systemDate.setText(DateUtil.getTime(getApplicationContext()));
             timeHandle.postDelayed(this, 5000);
         }
 

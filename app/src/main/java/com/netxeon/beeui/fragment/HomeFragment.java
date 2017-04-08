@@ -704,10 +704,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private Handler timeHandle = new Handler();
     private Runnable timeRun = new Runnable() {
         public void run() {
-            dateText.setText(DateUtil.getDate());
-            timeText.setText(DateUtil.getTime());
-            weekText.setText(DateUtil.getWeek());
-            apmText.setText(DateUtil.getAmOrPm());
+            dateText.setText(DateUtil.getDate(getApplicationContext()));
+            timeText.setText(DateUtil.getTime(getApplicationContext()));
+            weekText.setText(DateUtil.getWeek(getApplicationContext()));
+            apmText.setText(DateUtil.getAmOrPm(getApplicationContext()));
             timeHandle.postDelayed(this, 5000);
         }
 
