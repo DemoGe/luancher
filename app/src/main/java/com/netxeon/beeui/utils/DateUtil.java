@@ -53,8 +53,7 @@ public class DateUtil {
         ContentResolver cv = context.getContentResolver();
         String strTimeFormat = android.provider.Settings.System.getString(cv,
                 android.provider.Settings.System.TIME_12_24);
-
-        if(strTimeFormat.equals("12"))
+        if(strTimeFormat!=null && strTimeFormat.equals("12"))
         {
             DateFormat dateFormat12=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a  EEEE");
 
@@ -62,4 +61,5 @@ public class DateUtil {
         }
         return formattedDate;
     }
+
 }

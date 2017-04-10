@@ -42,8 +42,8 @@ public class MemoryCleaner {
 
     private void updateMemory() {
 
-        long tatal = getTotalMemory();
-        long available = getAvailMemory();
+        long tatal = getTotalMemorySize1();
+        long available = getAvailableMemory1();
 
         float result = (float) (tatal - available) / (float) (tatal);
 
@@ -51,6 +51,7 @@ public class MemoryCleaner {
         if (mySinkingView != null) {
             mySinkingView.setPercent((float) result);
         }
+        percent = (int) result * 100;
         loadui();
 
     }
@@ -62,8 +63,8 @@ public class MemoryCleaner {
             public void run() {
                 while (true) {
                     if (isUpFinish) {
-                        long tatal = getTotalMemory();
-                        long available = getAvailMemory();
+                        long tatal = getTotalMemorySize1();
+                        long available = getAvailableMemory1();
 
                         float result = (float) (tatal - available) / (float) (tatal);
 
@@ -229,5 +230,28 @@ public class MemoryCleaner {
         mySinkingView = (MySinkingView) mActivity.findViewById(R.id.sinking);
 
     }
+    //湖哥3G用不了,从网上找的接口替换原先波波的 系统总内存
+    public  long getTotalMemorySize1() {
+        String dir = "/proc/meminfo";
+        try {
+            FileReader fr = new FileReader(dir);
+            BufferedReader br = new BufferedReader(fr, 2048);
+            String memoryLine = br.readLine();
+            String subMemoryLine = memoryLine.substring(memoryLine.indexOf("MemTotal:"));
+            br.close();
+            return Integer.parseInt(subMemoryLine.replaceAll("\\D+", "")) * 1024l;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    //湖哥3G用不了,从网上找的接口替换原先波波的 可用内存
+    public  long getAvailableMemory1() {
+        ActivityManager am = (ActivityManager) mActivity.getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        am.getMemoryInfo(memoryInfo);
+        return memoryInfo.availMem;
+    }
+
 
 }
