@@ -57,23 +57,25 @@ import static android.security.KeyStore.getApplicationContext;
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener,
         View.OnFocusChangeListener, AdapterView.OnItemSelectedListener {
 
+    //shortcut列数限制
+    public static final int columns = 11;
+    public static boolean setLastRNull = false;
+    private static int mWeatherCode = 3200;
+    private static boolean GET_WEATHER_OK = false;
+    private static String aaa;
+    private final String ADDITIONAL = "additional";
+    public RelativeLayout lastR = null;
     private ShortcutsAdapter mAdapter;
     private GridViewTV gridView;
     private PackageManager pm;
     private List<Shortcut> mShortcut;
     private String mCurrentCategory = Data.HOME;
-    private final String ADDITIONAL = "additional";
     private RelativeLayout music, online, local, image, browser, apps, datetime, weather, storage, setting;
-    //shortcut列数限制
-    public static final int columns = 11;
     //shortcut行数限制
     private int rows = 1;
     //放大倍数
     private float scale = 1.1f;
-    public static boolean setLastRNull = false;
-    public RelativeLayout lastR = null;
     private boolean isPaused = false;
-
     private TextView dateText;
     private TextView timeText;
     private TextView weekText;
@@ -83,11 +85,109 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
    private TextView weather_info1;
     private ImageView weather_image1;
     private TextView  storage_display;
-    private  static int mWeatherCode =3200;
     private ConnectivityManager mConnectivityManager;
     private NetworkInfo netInfo;
-    private static boolean GET_WEATHER_OK = false;
     private WeatherReceiver mWeatherReceiver;
+    private View mOldView;
+    private boolean isSelect = false;
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 0:
+                    if (isSelect) {
+                        isSelect = false;
+                    } else {
+                        // 如果是第一次进入该gridView，则进入第一个item，如果不是第一次进去，则选择上次出来的item
+                        if (mOldView == null) {
+                            mOldView = gridView.getChildAt(0);
+                            if (mOldView != null) {
+                                AnimUtil.setViewScale(mOldView, scale);
+                            }
+                        } else {
+                            AnimUtil.setViewScale(mOldView, scale);
+                        }
+
+//                Log.i("bo", "heyheyhey");
+                    }
+                    break;
+            }
+        }
+//            Log.i("bo", "handle get msg");
+
+        ;
+    };
+    Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+//            try {
+//                Thread.sleep(50);
+            handler.sendEmptyMessage(0);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        }
+    };
+    private Handler timeHandle = new Handler();
+    private Runnable timeRun = new Runnable() {
+        public void run() {
+            dateText.setText(DateUtil.getDate(getApplicationContext()));
+            timeText.setText(DateUtil.getTime(getApplicationContext()));
+            weekText.setText(DateUtil.getWeek(getApplicationContext()));
+            apmText.setText(DateUtil.getAmOrPm(getApplicationContext()));
+            timeHandle.postDelayed(this, 5000);
+        }
+
+    };
+    //wifi,weather
+    private Handler mUpdateWeatherHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+//            L.i("MainActivity.UpdateWeatherHandler msg.what : " + msg.what);
+            switch (msg.what) {
+                case WeatherUtils.MSG_WEATHER_NO_CITY: {
+                    if (weather_city1 != null) weather_city1.setText(R.string.weather_no_city);
+                    Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, "empty");
+                    break;
+                }
+                case WeatherUtils.MSG_WEATHER_OK: {
+                    WeatherInfo weatherInfo = (WeatherInfo) msg.obj;
+                    if (weather_city1 != null && weather_image1 != null && weatherInfo != null) {
+                        mWeatherCode = weatherInfo.getCurrentCode();
+                        int temp = (int) ((weatherInfo.getCurrentTemp() - 32) / 1.8);
+                        weathrer_temperature1.setText(temp + "ºC");
+                        weather_city1.setText(weatherInfo.getLocationCity());
+                        weather_info1.setText(weatherInfo.getCurrentText());
+                        weathrer_temperature1.setVisibility(View.VISIBLE);
+                        if (mWeatherCode >= 0 && mWeatherCode <= 47) {
+                            weather_image1.setImageResource(Data.getWeatherIcon(mWeatherCode));//设置通过weathercode设置已经在本地的天气图片
+                        } else {
+                            weather_image1.setImageResource(R.mipmap.weather3200);
+                        }
+                        Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
+//                        L.i("MainActivity.UpdateWeatherHandler display weather info !");
+                        GET_WEATHER_OK = true;
+
+                    } else {
+                        if (weather_city1 != null && weather_image1 != null) {
+                            // weather_city1.setText("Sunny to cloudy");
+                            //   weathrer_temperature1.setText("28");
+                            //  weather_info1.setText("走到这里");
+                            initWeather();
+
+                        }
+                        //    Toast.makeText(getActivity(), R.string.weather_edit_city_error, Toast.LENGTH_LONG).show();
+//                        L.i("MainActivity.UpdateWeatherHandler weather views are null !");
+
+                    }
+                    break;
+                }
+
+            }
+        }
+    };
+
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (hidden) {
@@ -109,7 +209,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         mShortcut = new ArrayList<>();
         aaa = Util.getString(getActivity(), WeatherUtils.WEATHER_CITY);
     }
-   private  static  String aaa;
+
     public void initWeather() {
         ConnectivityManager connManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         if(connManager.getActiveNetworkInfo() != null){
@@ -129,6 +229,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }else{
         }
     }
+
     private void getWeatherAtonResume(){
         if (!GET_WEATHER_OK) {
             ConnectivityManager connManager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -162,7 +263,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         setListener();
 
     }
-
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -246,7 +346,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         super.onStart();
     }
 
-
     @Override
     public void onResume() {
         if (isPaused) {
@@ -279,8 +378,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     break;
             }
         }
-
-
         getData();
         super.onResume();
         getWeatherAtonResume();
@@ -291,7 +388,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         isPaused = true;
         super.onPause();
     }
-
 
     @Override
     public void onDestroyView() {
@@ -363,7 +459,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
 
     }
-
 
     @Override
     public void onClick(View v) {
@@ -634,49 +729,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         }
     }
 
-    Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-//            try {
-//                Thread.sleep(50);
-            handler.sendEmptyMessage(0);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-        }
-    };
-    Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case 0:
-                    if (isSelect) {
-                        isSelect = false;
-                    } else {
-                        // 如果是第一次进入该gridView，则进入第一个item，如果不是第一次进去，则选择上次出来的item
-                        if (mOldView == null) {
-                            mOldView = gridView.getChildAt(0);
-                            if (mOldView != null) {
-                                AnimUtil.setViewScale(mOldView, scale);
-                            }
-                        } else {
-                            AnimUtil.setViewScale(mOldView, scale);
-                        }
-
-//                Log.i("bo", "heyheyhey");
-                    }
-                    break;
-            }
-        }
-//            Log.i("bo", "handle get msg");
-
-        ;
-    };
-
-
-    private View mOldView;
-    private boolean isSelect = false;
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (view != null && gridView.hasFocus()) {
@@ -700,66 +752,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         categoryFragment.setCurrentCategory(cate);
         ((MainActivity) getActivity()).changeFragment(categoryFragment);
     }
-
-    private Handler timeHandle = new Handler();
-    private Runnable timeRun = new Runnable() {
-        public void run() {
-            dateText.setText(DateUtil.getDate(getApplicationContext()));
-            timeText.setText(DateUtil.getTime(getApplicationContext()));
-            weekText.setText(DateUtil.getWeek(getApplicationContext()));
-            apmText.setText(DateUtil.getAmOrPm(getApplicationContext()));
-            timeHandle.postDelayed(this, 5000);
-        }
-
-    };
-    //wifi,weather
-    private Handler mUpdateWeatherHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-
-//            L.i("MainActivity.UpdateWeatherHandler msg.what : " + msg.what);
-            switch (msg.what) {
-                case WeatherUtils.MSG_WEATHER_NO_CITY: {
-                    if (weather_city1 != null) weather_city1.setText(R.string.weather_no_city);
-                     Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, "empty");
-                    break;
-                }
-                case WeatherUtils.MSG_WEATHER_OK: {
-                    WeatherInfo weatherInfo = (WeatherInfo) msg.obj;
-                    if (weather_city1 != null && weather_image1 != null && weatherInfo != null) {
-                        mWeatherCode = weatherInfo.getCurrentCode();
-                        int temp = (int) ((weatherInfo.getCurrentTemp() - 32) / 1.8);
-                        weathrer_temperature1.setText(temp + "ºC");
-                        weather_city1.setText(weatherInfo.getLocationCity());
-                        weather_info1.setText(weatherInfo.getCurrentText());
-                        weathrer_temperature1.setVisibility(View.VISIBLE);
-                        if (mWeatherCode >= 0 && mWeatherCode <= 47) {
-                            weather_image1.setImageResource(Data.getWeatherIcon(mWeatherCode));//设置通过weathercode设置已经在本地的天气图片
-                        } else {
-                            weather_image1.setImageResource(R.mipmap.weather3200);
-                        }
-                         Util.setString(getActivity(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
-//                        L.i("MainActivity.UpdateWeatherHandler display weather info !");
-                        GET_WEATHER_OK = true;
-
-                    } else {
-                        if (weather_city1 != null && weather_image1 != null) {
-                            // weather_city1.setText("Sunny to cloudy");
-                            //   weathrer_temperature1.setText("28");
-                            //  weather_info1.setText("走到这里");
-                            initWeather();
-
-                        }
-                        //    Toast.makeText(getActivity(), R.string.weather_edit_city_error, Toast.LENGTH_LONG).show();
-//                        L.i("MainActivity.UpdateWeatherHandler weather views are null !");
-
-                    }
-                    break;
-                }
-
-            }
-        }
-    };
 
     public void showEditCityForWeatherDialog() {
         final EditText editor = new EditText(getActivity());
