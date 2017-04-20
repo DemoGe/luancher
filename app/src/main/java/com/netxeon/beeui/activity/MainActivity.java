@@ -24,7 +24,6 @@ import android.os.PowerManager;
 import android.os.SystemProperties;
 import android.provider.Settings;
 import android.text.TextUtils;
-
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -56,11 +55,13 @@ import java.util.Map;
 
 import zh.wang.android.apis.yweathergetter4a.WeatherInfo;
 
-import static android.security.KeyStore.getApplicationContext;
-
 public class MainActivity extends Activity implements View.OnClickListener, View.OnFocusChangeListener
         , View.OnLongClickListener {
 
+    public static Integer FRAGMENT = R.id.main_content_fragment;
+    public static Integer CODE_FOR_ACCESS_COARSE_LOCATION = 923;
+    private static int mWeatherCode = 3200;
+    public Context mContext;
     //顶部tab
     private TextView tab1, tab2, tab3;
     //天气，日期相关
@@ -68,23 +69,16 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     private TextView weather_city;
     private TextView weathrer_temperature;
     private ImageView weather_image, tab3_image;
-    private static int mWeatherCode = 3200;
     private TextView systemDate;
     private ImageView externalStorage, switcher, btStatus, setting, footshutdown, footsystemvoice, footvoicereduce, footwifi;
-
     private HomeFragment homeFragment;
     private AppsFragment appsFragment;
     private CategoryFragment categoryFragment;
-
-    public static Integer FRAGMENT = R.id.main_content_fragment;
-    public static Integer CODE_FOR_ACCESS_COARSE_LOCATION = 923;
     private IntentFilter mFilter;
-
     private NetworkChangedReceiver mNetworkChangedReceiver;
     private UsbChangeReceiver mUsbChangeReceiver;
     private BluetoothChangeReceiver mBluetoothChangeReceiver;
     private Fragment mCurrentFragment, mLastFragment = null;
-    public Context mContext;
     private  HomeReceiver homeReceiver;
     private TextView lastTag;
     private Map<String, String> volumes;
@@ -92,11 +86,67 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     private boolean isForeground = false;
     private AudioManager audiomanage;
     private   boolean isHomeKey=false;
+    //wifi,weather
+    private Handler mUpdateWeatherHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+//            L.i("MainActivity.UpdateWeatherHandler msg.what : " + msg.what);
+            switch (msg.what) {
+                case WeatherUtils.MSG_WEATHER_NO_CITY: {
+                    if (weather_city != null) weather_city.setText(R.string.weather_no_city);
+                    Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, "empty");
+                    break;
+                }
+                case WeatherUtils.MSG_WEATHER_OK: {
+                    WeatherInfo weatherInfo = (WeatherInfo) msg.obj;
+
+                    if (weather_city != null && weather_image != null && weatherInfo != null) {
+                        mWeatherCode = weatherInfo.getCurrentCode();
+                        int temp = (int) ((weatherInfo.getCurrentTemp() - 32) / 1.8);
+                        weathrer_temperature.setText(temp + "ºC");
+                        weather_city.setText(weatherInfo.getLocationCity());
+                        weathrer_temperature.setVisibility(View.VISIBLE);
+                        if (mWeatherCode >= 0 && mWeatherCode <= 47) {
+                            weather_image.setImageResource(Data.getWeatherIcon(mWeatherCode));//设置通过weathercode设置已经在本地的天气图片
+                        } else {
+                            weather_image.setImageResource(R.mipmap.weather3200);
+                        }
+
+                        Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
+//                        L.i("MainActivity.UpdateWeatherHandler display weather info !");
+                    } else {
+                        if (weather_city != null && weather_image != null) {
+                            weather_city.setText(R.string.weather_no_city);
+                            weathrer_temperature.setText("");
+                            weathrer_temperature.setVisibility(View.GONE);
+                            weather_image.setImageBitmap(null);
+
+                        }
+                        Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, "empty");
+                        //  Toast.makeText(getApplicationContext(), R.string.weather_edit_city_error, Toast.LENGTH_LONG).show();
+//                        L.i("MainActivity.UpdateWeatherHandler weather views are null !");
+                    }
+                    break;
+                }
+
+            }
+        }
+    };
+    //时间
+    private Handler timeHandle = new Handler();
+    private Runnable timeRun = new Runnable() {
+        public void run() {
+            systemDate.setText(DateUtil.getTime(getApplicationContext()));
+            timeHandle.postDelayed(this, 5000);
+        }
+
+    };
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +158,12 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             new Thread() {
                 public void run() {
                     Util.copyDatabaseFromAssert(MainActivity.this, newDatabaseVersion);//顺便把数据库版本set进去
-              //      Util.copyWallpaperFromAssert(MainActivity.this);
+                    Util.copyWallpaperFromAssert(MainActivity.this);
                 }
             }.start();
         }
         mContext = this;
-      //  getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER);//壁纸
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER);//壁纸
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         setContentView(R.layout.activity_main);
         initView();
@@ -187,7 +237,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         registerReceiver(mUsbChangeReceiver, Filter);
     }
 
-
     private void initbtDispaly() {
 
         IntentFilter filter = new IntentFilter();
@@ -195,7 +244,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         mBluetoothChangeReceiver = new BluetoothChangeReceiver(btStatus);
         registerReceiver(mBluetoothChangeReceiver, filter);
     }
-
 
     private void initView() {
         tab1 = (TextView) findViewById(R.id.main_content_tag1);
@@ -321,6 +369,20 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         mCurrentFragment = fragment;
     }
 
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        if (requestCode == CODE_FOR_ACCESS_COARSE_LOCATION) {
+//            if (permissions[0].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                //用户同意
+//                showEditCityForWeatherDialog();
+//            } else {
+//                //用户不同意，自行处理即可
+//                T.showLong(mContext, "无法获取位置");
+//            }
+//        }
+//    }
+
     //tab3 上面的小图标显示
     public ImageView setTab3Image() {
         // String str =categoryFragment.getmCurrentCategoryString();
@@ -405,21 +467,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 
         return super.onKeyDown(keyCode, event);
     }
-
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        if (requestCode == CODE_FOR_ACCESS_COARSE_LOCATION) {
-//            if (permissions[0].equals(Manifest.permission.ACCESS_COARSE_LOCATION)
-//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                //用户同意
-//                showEditCityForWeatherDialog();
-//            } else {
-//                //用户不同意，自行处理即可
-//                T.showLong(mContext, "无法获取位置");
-//            }
-//        }
-//    }
-
 
     @Override
     public void onClick(View v) {
@@ -570,54 +617,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         return false;
     }
 
-    //wifi,weather
-    private Handler mUpdateWeatherHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-
-//            L.i("MainActivity.UpdateWeatherHandler msg.what : " + msg.what);
-            switch (msg.what) {
-                case WeatherUtils.MSG_WEATHER_NO_CITY: {
-                    if (weather_city != null) weather_city.setText(R.string.weather_no_city);
-                    Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, "empty");
-                    break;
-                }
-                case WeatherUtils.MSG_WEATHER_OK: {
-                    WeatherInfo weatherInfo = (WeatherInfo) msg.obj;
-
-                    if (weather_city != null && weather_image != null && weatherInfo != null) {
-                        mWeatherCode = weatherInfo.getCurrentCode();
-                        int temp = (int) ((weatherInfo.getCurrentTemp() - 32) / 1.8);
-                        weathrer_temperature.setText(temp + "ºC");
-                        weather_city.setText(weatherInfo.getLocationCity());
-                        weathrer_temperature.setVisibility(View.VISIBLE);
-                        if (mWeatherCode >= 0 && mWeatherCode <= 47) {
-                            weather_image.setImageResource(Data.getWeatherIcon(mWeatherCode));//设置通过weathercode设置已经在本地的天气图片
-                        } else {
-                            weather_image.setImageResource(R.mipmap.weather3200);
-                        }
-
-                        Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, weatherInfo.getLocationCity());
-//                        L.i("MainActivity.UpdateWeatherHandler display weather info !");
-                    } else {
-                        if (weather_city != null && weather_image != null) {
-                            weather_city.setText(R.string.weather_no_city);
-                            weathrer_temperature.setText("");
-                            weathrer_temperature.setVisibility(View.GONE);
-                            weather_image.setImageBitmap(null);
-
-                        }
-                        Util.setString(getApplicationContext(), WeatherUtils.WEATHER_CITY, "empty");
-                        //  Toast.makeText(getApplicationContext(), R.string.weather_edit_city_error, Toast.LENGTH_LONG).show();
-//                        L.i("MainActivity.UpdateWeatherHandler weather views are null !");
-                    }
-                    break;
-                }
-
-            }
-        }
-    };
-
     public void showEditCityForWeatherDialog() {
         final EditText editor = new EditText(this);
         editor.setSingleLine();
@@ -635,17 +634,6 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             }
         }).show();
     }
-
-    //时间
-    private Handler timeHandle = new Handler();
-    private Runnable timeRun = new Runnable() {
-        public void run() {
-            systemDate.setText(DateUtil.getTime(getApplicationContext()));
-            timeHandle.postDelayed(this, 5000);
-        }
-
-    };
-
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {

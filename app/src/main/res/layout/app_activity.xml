@@ -4,29 +4,35 @@
     android:layout_height="match_parent"
     tools:context="com.netxeon.beeui.activity.MainActivity" >
 
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_centerInParent="true"
-         android:layout_alignParentTop="true"
-         android:text="@string/all_applications"
-         android:textSize="@dimen/category_tab_text_size"
-         android:layout_marginTop="15dp"
-         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+
+            android:layout_weight="0.8"
+            android:text="@string/all_applications"
+            android:textSize="@dimen/category_tab_text_size" />
 
     <com.netxeon.beeui.utils.MyGridView
         android:id="@+id/gv_shortcut_main"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="70dp"
+        android:layout_height="0dp"
+        android:layout_weight="9.2"
         android:cacheColorHint="@android:color/transparent"
         android:drawSelectorOnTop="false"
+        android:horizontalSpacing="2dp"
         android:numColumns="6"
         android:scrollbars="none"
-        android:horizontalSpacing="2dp"
-        android:verticalSpacing="2dp"
-         >
+        android:verticalSpacing="2dp">
     </com.netxeon.beeui.utils.MyGridView>
+    </LinearLayout>
+
 
 </RelativeLayout>

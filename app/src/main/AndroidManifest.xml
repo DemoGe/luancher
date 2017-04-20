@@ -31,7 +31,7 @@
         android:icon="@mipmap/bee_ui"
         android:label="@string/app_name"
         android:persistent="true"
-        android:theme="@style/dialogActivity">
+        android:theme="@style/changebgTheme">
 
         <activity
             android:name="com.netxeon.beeui.activity.MainActivity"
@@ -72,12 +72,13 @@
             android:exported="true"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
-<!--
+
         <receiver android:name="com.netxeon.beeui.broadcast.KeyReceiver" >
             <intent-filter>
-                <action android:name="com.netxeon.lignthome.poweroff" />
+                <action android:name="com.netxeon.beeui.showapp" />
             </intent-filter>
         </receiver>
+        <!--
         <receiver android:name="com.netxeon.beeui.broadcast.SystemVoiceReceicer" >
             <intent-filter>
                 <action android:name="com.netxeon.newprobox2.systemvoice" />
