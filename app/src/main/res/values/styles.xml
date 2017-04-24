@@ -11,11 +11,12 @@
 
     <style name="dialogActivity" >
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
+        <!--RKï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½windowIsTranslucentï¿½ï¿½ï¿½ï¿½Îªfalse-->
+        <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:background">@color/none</item>
-        <!--µ¯³ö¶Ô»°¿òºÚÉ«¶Ô»°¿òÉèÖÃÎª°ëÍ¸Ã÷£¬RkÉÏ¼ÓÁË»áÉÁÈ¥µô
+        <!--ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½É«ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Í¸ï¿½ï¿½ï¿½ï¿½Rkï¿½Ï¼ï¿½ï¿½Ë»ï¿½ï¿½ï¿½È¥ï¿½ï¿½
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.5</item>-->
     </style>

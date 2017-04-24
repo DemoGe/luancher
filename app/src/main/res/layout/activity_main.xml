@@ -28,7 +28,7 @@
             android:id="@+id/main_header_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/main_header_date"
+            android:layout_alignBottom="@+id/main_header_date"
             android:layout_marginBottom="@dimen/margin_bottom_weather"
             android:layout_marginEnd="@dimen/margin_between_weather_and_date"
             android:layout_marginTop="@dimen/header_margin_top"
