@@ -11,12 +11,12 @@
 
     <style name="dialogActivity" >
         <item name="android:windowFrame">@null</item>
-        <!--RK���ϻ���ʾ����ı���������ת����windowIsTranslucent����Ϊfalse-->
+        <!--RK加上会显示后面的背景，再跳转所以windowIsTranslucent设置为false-->
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:background">@color/none</item>
-        <!--�����Ի����ɫ�Ի�������Ϊ��͸����Rk�ϼ��˻���ȥ��
+        <!--弹出对话框黑色对话框设置为半透明，Rk上加了会闪去掉
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.5</item>-->
     </style>

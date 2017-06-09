@@ -65,6 +65,18 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private static String aaa;
     private final String ADDITIONAL = "additional";
     public RelativeLayout lastR = null;
+    Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+//            try {
+//                Thread.sleep(50);
+            handler.sendEmptyMessage(0);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        }
+    };
     private ShortcutsAdapter mAdapter;
     private GridViewTV gridView;
     private PackageManager pm;
@@ -115,18 +127,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 //            Log.i("bo", "handle get msg");
 
         ;
-    };
-    Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-//            try {
-//                Thread.sleep(50);
-            handler.sendEmptyMessage(0);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-        }
     };
     private Handler timeHandle = new Handler();
     private Runnable timeRun = new Runnable() {
@@ -489,7 +489,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
             case R.id.browser_icon:
                 lastR = (RelativeLayout) v;
-                startThirdAppforPM(getResources().getString(R.string.browser_internet));
+                if (isAppInstalled("com.android.chrome")) {
+                    startThirdAppforPM(getResources().getString(R.string.google_internet));
+                } else if (isAppInstalled("com.android.browser")) {
+                    startThirdAppforPM(getResources().getString(R.string.browser_internet));
+                } else if (isAppInstalled("com.android.browser") && isAppInstalled("com.android.chrome")) {
+                    startThirdAppforPM(getResources().getString(R.string.google_internet));
+                }
+
 
 //                intent = new Intent(getActivity(), CategoryActivity.class);
 //                intent.putExtra(Util.CATEGORY, Data.Cate.favourites.name());
@@ -782,6 +789,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         }
     }
+
+    //判断APK是否已经安装
+    private boolean isAppInstalled(String uri) {
+        PackageManager pmm = getActivity().getPackageManager();
+        boolean installed = false;
+        try {
+            pmm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            installed = true;
+        } catch (PackageManager.NameNotFoundException e) {
+            installed = false;
+        }
+        return installed;
+    }
+
     private class WeatherReceiver extends BroadcastReceiver{
 
         @Override
