@@ -14,6 +14,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Rect;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
@@ -43,7 +44,9 @@ import com.netxeon.beeui.fragment.HomeFragment;
 import com.netxeon.beeui.utils.AnimUtil;
 import com.netxeon.beeui.utils.Data;
 import com.netxeon.beeui.utils.DateUtil;
+import com.netxeon.beeui.utils.EffectNoDrawBridge;
 import com.netxeon.beeui.utils.ListPopupwindow;
+import com.netxeon.beeui.utils.MainUpView;
 import com.netxeon.beeui.utils.SPUtils;
 import com.netxeon.beeui.utils.T;
 import com.netxeon.beeui.utils.Util;
@@ -63,6 +66,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     public static Integer CODE_FOR_ACCESS_COARSE_LOCATION = 923;
     private static int mWeatherCode = 3200;
     public Context mContext;
+    MainUpView mainUpView;
     //顶部tab
     private TextView tab1, tab2, tab3;
     //天气，日期相关
@@ -247,6 +251,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     }
 
     private void initView() {
+        mainUpView = (MainUpView) findViewById(R.id.main_up_view);
         tab1 = (TextView) findViewById(R.id.main_content_tag1);
         tab2 = (TextView) findViewById(R.id.main_content_tag2);
         tab3 = (TextView) findViewById(R.id.main_content_tag_category);
@@ -275,6 +280,16 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         if (hasBT() == false) {
             btStatus.setVisibility(View.GONE);
         }
+
+        // 建议使用 NoDraw.
+        mainUpView.setEffectBridge(new EffectNoDrawBridge());
+        EffectNoDrawBridge bridget = (EffectNoDrawBridge) mainUpView.getEffectBridge();
+        bridget.setTranDurAnimTime(200);
+        // 设置移动边框的图片.
+        mainUpView.setUpRectResource(R.drawable.color);
+        // 移动方框缩小的距离.
+        mainUpView.setDrawUpRectPadding(new Rect(10, 10, 10, -110));
+
     }
 
     private void setListener() {
@@ -693,10 +708,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                 case R.id.main_header_weather:
                     AnimUtil.setViewScale(v, new Float(1.5));
                     break;
-                case R.id.main_foot_external_storage:
-                    AnimUtil.setViewScale(v, new Float(1.2));
-//                    Log.d("usb", "clickable? " + externalStorage.isClickable());
-                    break;
+
                 case R.id.main_foot_setting:
                     setting.setImageResource(R.mipmap.settings_on);
                     break;
@@ -704,23 +716,18 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                     switcher.setImageResource(R.mipmap.switch_on);
                     break;
                 case R.id.main_foot_shutdown:
-                    AnimUtil.setViewScale(v, new Float(1.2));
-                    break;
                 case R.id.main_foot_volume:
-                    AnimUtil.setViewScale(v, new Float(1.2));
-                    break;
                 case R.id.main_foot_volume_reduce:
-                    AnimUtil.setViewScale(v, new Float(1.2));
-                    break;
                 case R.id.main_foot_wifi_states:
-                    AnimUtil.setViewScale(v, new Float(1.2));
-                    break;
                 case R.id.main_foot_bluetooth_states:
-                    AnimUtil.setViewScale(v, new Float(1.2));
+                case R.id.main_foot_external_storage:
+                    mainUpView.setVisibility(View.VISIBLE);
+                    mainUpView.setFocusView(v, 1.2f);
                     break;
             }
         } else {
             switch (v.getId()) {
+
                 case R.id.main_content_tag1:
                     break;
                 case R.id.main_content_tag2:
@@ -728,9 +735,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                 case R.id.main_header_weather:
                     AnimUtil.setViewScaleDefault(v);
                     break;
-                case R.id.main_foot_external_storage:
-                    AnimUtil.setViewScaleDefault(v);
-                    break;
+
                 case R.id.main_foot_setting:
                     setting.setImageResource(R.mipmap.settings_off);
                     break;
@@ -738,19 +743,13 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                     switcher.setImageResource(R.mipmap.switch_off);
                     break;
                 case R.id.main_foot_shutdown:
-                    AnimUtil.setViewScaleDefault(v);
-                    break;
                 case R.id.main_foot_volume:
-                    AnimUtil.setViewScaleDefault(v);
-                    break;
                 case R.id.main_foot_volume_reduce:
-                    AnimUtil.setViewScaleDefault(v);
-                    break;
                 case R.id.main_foot_wifi_states:
-                    AnimUtil.setViewScaleDefault(v);
-                    break;
                 case R.id.main_foot_bluetooth_states:
+                case R.id.main_foot_external_storage:
                     AnimUtil.setViewScaleDefault(v);
+                    mainUpView.setVisibility(View.INVISIBLE);
                     break;
             }
         }

@@ -9,6 +9,10 @@
         <item>Open</item>
         <item>Details</item>
     </string-array>
-
+    <!-- ����ؼ����� -->
+    <declare-styleable name="MainUpView">
+        <attr name="upImageRes" format="reference" />
+        <attr name="shadowImageRes" format="reference" />
+    </declare-styleable>
 
 </resources>

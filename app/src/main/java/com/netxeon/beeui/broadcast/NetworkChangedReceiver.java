@@ -19,10 +19,11 @@ import java.util.TimerTask;
 
 
 public class NetworkChangedReceiver extends BroadcastReceiver {
-    private Activity mContext;
-    private Handler mUpdateHandler;
     // update weather info per 3 hours
     private static final long UPDATE_WEATHER_PER_TIME = 1000 * 60 * 60 * 3;
+    int count = 0;
+    private Activity mContext;
+    private Handler mUpdateHandler;
     private long mLastWeatherUpdate = 0;
 
     public NetworkChangedReceiver(Activity context, Handler updateHandler) {
@@ -74,7 +75,8 @@ public class NetworkChangedReceiver extends BroadcastReceiver {
                 ethernat.setImageResource(available ? R.mipmap.ethernet_on : R.mipmap.ethernet_off);
                 wifi_image.setImageResource(R.mipmap.icon_wifi_0);
             } else {
-                WifiManager manager = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+                ethernat.setImageResource(R.mipmap.ethernet_off);
+                WifiManager manager = (WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                 int level = WifiManager.calculateSignalLevel(manager.getConnectionInfo().getRssi(), 5);
     //            L.i(level+"level");
                 wifi_image.setImageResource(R.drawable.wifi_signl);
@@ -98,8 +100,6 @@ public class NetworkChangedReceiver extends BroadcastReceiver {
             }
         }
     }
-
-    int count = 0;
 
     private void initWeather() {
         count++;

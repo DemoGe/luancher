@@ -339,5 +339,8 @@
 
     </RelativeLayout>
 
-
+    <com.netxeon.beeui.utils.MainUpView
+        android:id="@+id/main_up_view"
+        android:layout_width="45dp"
+        android:layout_height="45dp" />
 </RelativeLayout>
