@@ -57,6 +57,7 @@ import java.util.Map;
 
 import zh.wang.android.apis.yweathergetter4a.WeatherInfo;
 
+import static com.netxeon.beeui.fragment.HomeFragment.isChange;
 public class MainActivity extends Activity implements View.OnClickListener, View.OnFocusChangeListener
         , View.OnLongClickListener {
 
@@ -371,11 +372,13 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             tab3.setText(categoryFragment.getmCurrentCategoryString());
             tab3_image.setVisibility(View.VISIBLE);
             setTab3Image();
+            isChange = true;
         } else {
             tab3.setVisibility(View.GONE);
             tab1.setVisibility(View.GONE);
             tab2.setVisibility(View.GONE);
             tab3_image.setVisibility(View.GONE);
+            isChange = true;
         }
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         //  transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -721,8 +724,10 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                 case R.id.main_foot_wifi_states:
                 case R.id.main_foot_bluetooth_states:
                 case R.id.main_foot_external_storage:
+                    if (isChange == false) {
                     mainUpView.setVisibility(View.VISIBLE);
-                    mainUpView.setFocusView(v, 1.2f);
+                        mainUpView.setFocusView(v, 1.2f);
+                    }
                     break;
             }
         } else {
