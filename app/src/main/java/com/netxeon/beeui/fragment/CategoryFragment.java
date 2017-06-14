@@ -28,22 +28,65 @@ import com.netxeon.beeui.utils.Util;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.netxeon.beeui.fragment.HomeFragment.isChange;
 /**
  *  分类页
  */
 public class CategoryFragment extends Fragment implements View.OnFocusChangeListener,AdapterView.OnItemSelectedListener{
 
+    private final String ADDITIONAL = "additional";
     private String mCurrentCategory = null;
     private PackageManager pm;
     private List<Shortcut> mShortcut = new ArrayList<>();
     private ShortcutsAdapter mAdapter;
-    private final String ADDITIONAL = "additional";
     private PackageChangedReceiver mUpdateShortcutsReceiver;
     private IntentFilter mIntentFilter;
     private GridViewTV gridview;
     private int columns = 8;
     private boolean isPaused = false;
     private float scale = new Float(1.1);
+    private View mOldView;
+    private boolean isSelect = false;
+    Handler handler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 0:
+                    if (isSelect) {
+                        isSelect = false;
+
+                    } else {
+                        // 如果是第一次进入该gridView，则进入第一个item，如果不是第一次进去，则选择上次出来的item
+                        if (mOldView == null) {
+                            mOldView = gridview.getChildAt(0);
+                            if (mOldView != null) {
+                                AnimUtil.setViewScale(mOldView, scale);
+                            }
+                        } else {
+                            AnimUtil.setViewScale(mOldView, scale);
+                        }
+
+
+//                Log.i("bo", "heyheyhey");
+                    }
+                    break;
+            }
+        }
+
+        ;
+    };
+    Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+            // try {
+            //    Thread.sleep(50);
+            handler.sendEmptyMessage(0);
+            //} catch (InterruptedException e)
+            //   e.printStackTrace();
+
+        }
+    };
+
     public void setCurrentCategory(String category) {
         mCurrentCategory = category;
     }
@@ -95,6 +138,7 @@ public class CategoryFragment extends Fragment implements View.OnFocusChangeList
             mAdapter = new ShortcutsAdapter(getActivity(), mShortcut, pm, true);
             gridview.setAdapter(mAdapter);
             getData();
+            isChange = false;
         }
         super.onHiddenChanged(hidden);
     }
@@ -199,49 +243,6 @@ public class CategoryFragment extends Fragment implements View.OnFocusChangeList
             }
         }
     }
-    Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-           // try {
-            //    Thread.sleep(50);
-                handler.sendEmptyMessage(0);
-            //} catch (InterruptedException e)
-             //   e.printStackTrace();
-
-        }
-    };
-    Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what){
-                case 0:
-                    if (isSelect) {
-                        isSelect = false;
-
-                    } else {
-                        // 如果是第一次进入该gridView，则进入第一个item，如果不是第一次进去，则选择上次出来的item
-                        if (mOldView == null) {
-                            mOldView = gridview.getChildAt(0);
-                            if (mOldView != null){
-                                AnimUtil.setViewScale(mOldView, scale);
-                            }
-                        }else {
-                            AnimUtil.setViewScale(mOldView, scale);
-                        }
-
-
-//                Log.i("bo", "heyheyhey");
-                    }
-                   break;
-           }
-        }
-
-        ;
-    };
-
-
-    private View mOldView;
-    private boolean isSelect = false;
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

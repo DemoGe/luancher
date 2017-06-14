@@ -60,23 +60,12 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     //shortcut列数限制
     public static final int columns = 11;
     public static boolean setLastRNull = false;
+    public static boolean isChange = false;//控制添加底部小图标焦点框的显示与否
     private static int mWeatherCode = 3200;
     private static boolean GET_WEATHER_OK = false;
     private static String aaa;
     private final String ADDITIONAL = "additional";
     public RelativeLayout lastR = null;
-    Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-//            try {
-//                Thread.sleep(50);
-            handler.sendEmptyMessage(0);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-        }
-    };
     private ShortcutsAdapter mAdapter;
     private GridViewTV gridView;
     private PackageManager pm;
@@ -127,6 +116,18 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 //            Log.i("bo", "handle get msg");
 
         ;
+    };
+    Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+//            try {
+//                Thread.sleep(50);
+            handler.sendEmptyMessage(0);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        }
     };
     private Handler timeHandle = new Handler();
     private Runnable timeRun = new Runnable() {
@@ -198,7 +199,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             if (lastR != null) {
                 lastR.requestFocus();
             }
-
+            isChange = false;
         }
         super.onHiddenChanged(hidden);
     }
