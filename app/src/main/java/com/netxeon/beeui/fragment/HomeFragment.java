@@ -1,5 +1,6 @@
 package com.netxeon.beeui.fragment;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.BroadcastReceiver;
@@ -42,6 +43,10 @@ import com.netxeon.beeui.utils.GridViewTV;
 import com.netxeon.beeui.utils.Util;
 import com.netxeon.beeui.weather.WeatherUtils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -66,6 +71,19 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private static String aaa;
     private final String ADDITIONAL = "additional";
     public RelativeLayout lastR = null;
+    NumberFormat numberFormat;
+    Runnable run = new Runnable() {
+
+        @Override
+        public void run() {
+//            try {
+//                Thread.sleep(50);
+            handler.sendEmptyMessage(0);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        }
+    };
     private ShortcutsAdapter mAdapter;
     private GridViewTV gridView;
     private PackageManager pm;
@@ -88,6 +106,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private TextView  storage_display;
     private ConnectivityManager mConnectivityManager;
     private NetworkInfo netInfo;
+    //判断是否要执行OnResume中内存方法
+    private boolean isClean = false;
     private WeatherReceiver mWeatherReceiver;
     private View mOldView;
     private boolean isSelect = false;
@@ -96,7 +116,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             switch (msg.what) {
                 case 0:
                     if (isSelect) {
-                        isSelect = false;
                     } else {
                         // 如果是第一次进入该gridView，则进入第一个item，如果不是第一次进去，则选择上次出来的item
                         if (mOldView == null) {
@@ -116,18 +135,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 //            Log.i("bo", "handle get msg");
 
         ;
-    };
-    Runnable run = new Runnable() {
-
-        @Override
-        public void run() {
-//            try {
-//                Thread.sleep(50);
-            handler.sendEmptyMessage(0);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-        }
     };
     private Handler timeHandle = new Handler();
     private Runnable timeRun = new Runnable() {
@@ -284,6 +291,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         mAdapter = new ShortcutsAdapter(getActivity(), mShortcut, pm, false);
         gridView.setAdapter(mAdapter);
         gridView.setNumColumns(columns);
+        numberFormat = NumberFormat.getInstance();
     }
 
     private void viewInit(View view) {
@@ -347,6 +355,40 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         super.onStart();
     }
 
+    //系统总内存
+    public long getTotalMemorySize2() {
+        String dir = "/proc/meminfo";
+        try {
+            FileReader fr = new FileReader(dir);
+            BufferedReader br = new BufferedReader(fr, 2048);
+            String memoryLine = br.readLine();
+            String subMemoryLine = memoryLine.substring(memoryLine.indexOf("MemTotal:"));
+            br.close();
+            return Integer.parseInt(subMemoryLine.replaceAll("\\D+", "")) * 1024l;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    //湖哥3G用不了,从网上找的接口替换原先波波的 可用内存
+    public long getAvailableMemory2() {
+        ActivityManager am = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+        am.getMemoryInfo(memoryInfo);
+        return memoryInfo.availMem;
+    }
+
+    public void setMemoryCleanerNumbwer() {
+        long tatalMemory = getTotalMemorySize2();
+        long availableMemory = getAvailableMemory2();
+        float resultMemory = (float) (tatalMemory - availableMemory) / (float) tatalMemory;
+        float memoryNumber1 = resultMemory * 100;
+        resultMemory = Math.round(memoryNumber1);
+        String result = numberFormat.format(resultMemory);
+        storage_display.setText(result + "%");
+    }
+
     @Override
     public void onResume() {
         if (isPaused) {
@@ -379,8 +421,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     break;
             }
         }
+
+
         getData();
         super.onResume();
+        if (isClean == false) {
+            setMemoryCleanerNumbwer();
+        }
+        isClean = false;
         getWeatherAtonResume();
     }
 
@@ -527,6 +575,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 break;
             case R.id.storage_cleanup_icon:
                 lastR = (RelativeLayout) v;
+                isClean = true;
                 Intent cleanapp = new Intent(getActivity(), CleanActivity.class);
                 startActivityForResult(cleanapp, 1);
 
