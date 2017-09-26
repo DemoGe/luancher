@@ -293,9 +293,9 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         EffectNoDrawBridge bridget = (EffectNoDrawBridge) mainUpView.getEffectBridge();
         bridget.setTranDurAnimTime(200);
         // 设置移动边框的图片.
-        mainUpView.setUpRectResource(R.drawable.color);
+        mainUpView.setUpRectResource(R.mipmap.color);
         // 移动方框缩小的距离.
-        mainUpView.setDrawUpRectPadding(new Rect(10, 10, 10, -110));
+        mainUpView.setDrawUpRectPadding(new Rect(5, 5, 5, 5));
 
         mFtimerText = new Timer();
         mFtimerTaskText = null;
