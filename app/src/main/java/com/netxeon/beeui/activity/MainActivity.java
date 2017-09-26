@@ -295,7 +295,7 @@ public class MainActivity extends Activity implements View.OnClickListener, View
 
     private void setListener() {
         tab1.setOnFocusChangeListener(this);
-        tab2.setOnFocusChangeListener(this);
+        //   tab2.setOnFocusChangeListener(this);
         tab1.setOnClickListener(this);
         tab2.setOnClickListener(this);
         weather.setOnFocusChangeListener(this);
@@ -691,9 +691,9 @@ public class MainActivity extends Activity implements View.OnClickListener, View
                     }
                     homeFragment.lastR = null;
                     changeFragment(homeFragment);
-                    if (lastTag.equals(tab2)) {
-                        tab2.setBackgroundColor(getResources().getColor(R.color.none));
-                    }
+//                    if (lastTag.equals(tab2)) {
+//                        tab2.setBackgroundColor(getResources().getColor(R.color.none));
+//                    }
                     tab1.setBackgroundColor(getResources().getColor(R.color.blue));
                     lastTag = tab1;
                     break;
