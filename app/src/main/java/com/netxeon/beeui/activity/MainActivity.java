@@ -54,6 +54,8 @@ import com.netxeon.beeui.weather.WeatherUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import zh.wang.android.apis.yweathergetter4a.WeatherInfo;
 
@@ -92,6 +94,10 @@ public class MainActivity extends Activity implements View.OnClickListener, View
     private boolean isForeground = false;
     private AudioManager audiomanage;
     private   boolean isHomeKey=false;
+    //添加按键判断启动自动重启app
+    private String mFTimerCount = "";
+    private TimerTask mFtimerTaskText;
+    private Timer mFtimerText;
     //wifi,weather
     private Handler mUpdateWeatherHandler = new Handler() {
         @Override
@@ -291,6 +297,9 @@ public class MainActivity extends Activity implements View.OnClickListener, View
         // 移动方框缩小的距离.
         mainUpView.setDrawUpRectPadding(new Rect(10, 10, 10, -110));
 
+        mFtimerText = new Timer();
+        mFtimerTaskText = null;
+        mFTimerCount = "";
     }
 
     private void setListener() {
@@ -483,7 +492,28 @@ public class MainActivity extends Activity implements View.OnClickListener, View
             changeFragment(homeFragment);
             return true;
         }
+        if (keyCode == KeyEvent.KEYCODE_8) {
+            mFTimerCount += "menu";
+        }
+        if (mFTimerCount.contains("menu") && this.mFtimerTaskText == null) {
+            mFtimerTaskText = new TimerTask() {
+                public void run() {
+                    if (mFTimerCount.equals("menumenumenu")) {
+                        try {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            ComponentName componentName = new ComponentName("com.autoreboot.android", "com.autoreboot.android.MainActivity");
+                            intent.setComponent(componentName);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                        }
 
+                    }
+                    mFTimerCount = "";
+                    mFtimerTaskText = null;
+                }
+            };
+            this.mFtimerText.schedule(this.mFtimerTaskText, 2000);
+        }
         return super.onKeyDown(keyCode, event);
     }
 
